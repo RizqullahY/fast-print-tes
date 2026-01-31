@@ -1,7 +1,0 @@
-1. Simpan produk dari URL API Ke database ✔
-2. Menampilkan data ke halaman website
-3. Menampilkan data yang memiliki status " bisa dijual " id_status = 1
-4. Fitur edit, tambah dan hapus
-5. Alert / konfirmasi saat hapus
-6. Framework -> LARAVEL 12 ✔
-7. DBMS -> MySql ✔
