@@ -47,7 +47,12 @@
 @endsection
 
 @section('scripts')
+    <!-- SWAL -->
+    <script src="{{ asset('assets/js/helpers/swal.js') }}"></script>
 
+    <!-- SWAL -->
+    <script src="{{ asset('assets/js/helpers/blockui.js') }}"></script>
+    
     <!-- Winform -->
     <script src="{{ asset('assets/js/extends/winform.js') }}"></script>
     
@@ -59,6 +64,9 @@
 
     <!-- Flatpickr -->
     <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    
+    
+
     <script>
         const createUrl = "{{ route('product.create') }}";
         const editUrl = "{{ url('/product') }}/:id/edit";
@@ -66,6 +74,7 @@
         
         $("#create-data").click(() => {
             winform(createUrl, 'GET', 'Create Produk');
+            $.blockUI();
         });
 
         function editProduk(id) {
@@ -77,8 +86,6 @@
             let url = deleteUrl.replace(':id', id);
             winform(url, 'GET', 'YAKIN INGIN HAPUS ?', 'text-danger');
         }
-
-
 
         $('.dt-multilingual').DataTable({
             processing: true,
