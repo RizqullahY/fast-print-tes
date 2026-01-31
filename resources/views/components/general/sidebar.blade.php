@@ -23,6 +23,18 @@
                 <div data-i18n="Product">Product</div>
             </a>
         </li>
+        <li class="menu-item active open">
+            <a href="/categories" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div data-i18n="Categories">Categories</div>
+            </a>
+        </li>
+        <li class="menu-item active open">
+            <a href="/status" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div data-i18n="status">Status</div>
+            </a>
+        </li>
 
     </ul>
 </aside>
