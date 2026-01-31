@@ -8,7 +8,7 @@
             <label class="form-label">Nama Produk</label>
             <div class="input-group input-group-sm input-group-merge">
                 <span class="input-group-text"><i class="ti ti-package"></i></span>
-                <input type="text"
+                <input type="text" autocomplete="off"
                        class="form-control"
                        name="nama_produk"
                        value="{{ old('nama_produk', $produk->nama_produk) }}"
