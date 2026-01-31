@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 use App\Models\Produk;
 use App\Models\Kategori;
 use App\Models\Status;
+use App\Helpers\ApiResponse;
+use App\Helpers\Currency;
+
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use App\Helpers\Currency;
 
 class ProductController extends Controller
 {
@@ -27,21 +30,8 @@ class ProductController extends Controller
             : view('pages.product.create', compact('kategori','status'));
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'nama_produk' => 'required|string|max:255',
-            'kategori_id' => 'required|exists:kategori,id_kategori',
-            'harga'       => 'required|digits_between:1,15'
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors'  => $validator->errors()
-            ], 422);
-        }
-
         Produk::create([
             'id_produk'   => Produk::max('id_produk') + 1,
             'nama_produk' => $request->nama_produk,
@@ -50,11 +40,9 @@ class ProductController extends Controller
             'status_id'   => 1,
         ]);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Product berhasil ditambahkan'
-        ]);
+        return ApiResponse::success('Produk berhasil ditambahkan');
     }
+
 
     public function edit(Request $request, string $id_produk)
     {
@@ -67,24 +55,10 @@ class ProductController extends Controller
             : view('pages.product.edit', compact('produk', 'kategori', 'status'));
     }
 
-
-    public function update(Request $request, string $id_produk)
+    public function update(ProductRequest $request, string $id_produk)
     {
-        $validator = Validator::make($request->all(), [
-            'nama_produk' => 'required|string|max:255',
-            'kategori_id' => 'required|exists:kategori,id_kategori',
-            'status_id'   => 'required|exists:status,id_status',
-            'harga'       => 'required|numeric|min:0',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json([
-                'success' => false,
-                'errors'  => $validator->errors()
-            ], 422);
-        }
-
         $produk = Produk::findOrFail($id_produk);
+
         $produk->update($request->only([
             'nama_produk',
             'kategori_id',
@@ -92,10 +66,7 @@ class ProductController extends Controller
             'harga'
         ]));
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Product berhasil diupdate'
-        ]);
+        return ApiResponse::success('Produk berhasil diupdate');
     }
 
 
@@ -114,12 +85,8 @@ class ProductController extends Controller
     {
         Produk::destroy($id_produk);
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Product berhasil Dihapus'
-        ]);
+        return ApiResponse::success('Produk berhasil dihapus');
     }
-
 
     public function list(Request $request)
     {
@@ -143,6 +110,5 @@ class ProductController extends Controller
             })
             ->rawColumns(['action'])
             ->make(true);
-    }
- 
+    } 
 }
