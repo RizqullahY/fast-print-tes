@@ -1,4 +1,4 @@
-<details>
+<details open>
 <summary><h3> TES PROGRAMMER</h3></summary>
     
 ### https://recruitment.fastprint.co.id/tes/tes/programmer/
@@ -41,3 +41,47 @@ HINT :
 1. CEK RESPONSE,HEADER, COOKIES
 ```
 </details>
+
+
+
+#### Setup Requirements
+
+* PHP 
+* Composer
+* Database Server 
+* Git
+* Web Server 
+
+```bash
+git clone https://github.com/RizqullahY/fast-print-tes.git
+cd fast-print-tes
+```
+```bash
+composer install
+```
+```bash
+cp .env.example .env
+```
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=nama_database
+DB_USERNAME=username
+DB_PASSWORD=password
+```
+```bash
+php artisan key:generate
+```
+```bash
+php artisan migrate
+```
+```php
+database/query.sql
+```
+```bash
+php artisan serve
+```
+```bash
+http://127.0.0.1:8000
+```
