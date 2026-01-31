@@ -1,0 +1,40 @@
+```
+Tes Junior Programmer
+
+1. Ambil data dari API yang sudah disediakan
+2. Buat Database dengan table :
+* Produk
+------------------------------------------------------------------
+|id_produk | nama_produk | harga | kategori_id | status_id |
+------------------------------------------------------------------
+* Kategori
+------------------------------------
+|id_kategori | nama_kategori |
+------------------------------------
+* Status
+--------------------------------
+|id_status | nama_status |
+--------------------------------
+3. Simpan produk yang sudah anda dapatkan dari url produk
+4. Buat halaman untuk menampilkan data yang sudah anda simpan
+5. Lalu tampilkan data yang hanya memiliki status " bisa dijual "
+6. Buat fitur untuk edit, tambah dan hapus
+7. Untuk fitur tambah dan edit gunakan form validasi (inputan nama harus diisi, dan harga harus berupa inputan angka)
+8. Untuk fitur hapus beri alert/konfirmasi(confirm) ketika di klik hapus
+9. Usahakan menggunakan framework Django (Disarankan memanfaatkan Serializer) atau Codeigniter 3, jika belum menguasai diperbolehkan menggunakan yang lain
+10. Usahakan menggunakan PostgreSQL atau MySQL, jika belum menguasai diperbolehkan menggunakan yang lain
+11. Buat dokumentasi selengkap dan sejelas mungkin (dapat berupa video)
+
+
+
+Link API :
+https://recruitment.fastprint.co.id/tes/api_tes_programmer
+Username: tesprogrammer300126C11 (username akan berubah2 mengikuti waktu server)
+Password (md5): bisacoding-tanggal sekarang (angka)-bulan sekarang (angka)-2 digit terakhir tahun sekarang (angka), Contoh : bisacoding-12-20-21
+Note :
+1. Hasil tes upload ke github pribadi
+2. Kirim link repository ke email berikut : prog3.fastprintsby@gmail.com dan adm.hrdfastprint@gmail.com
+3. Pada subject email isi dengan : Test Programmer - (Nama Pelamar)
+HINT :
+1. CEK RESPONSE,HEADER, COOKIES
+```
