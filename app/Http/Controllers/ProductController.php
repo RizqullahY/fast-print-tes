@@ -43,7 +43,6 @@ class ProductController extends Controller
         return ApiResponse::success('Produk berhasil ditambahkan');
     }
 
-
     public function edit(Request $request, string $id_produk)
     {
         $produk   = Produk::findOrFail($id_produk);
@@ -68,7 +67,6 @@ class ProductController extends Controller
 
         return ApiResponse::success('Produk berhasil diupdate');
     }
-
 
     public function show(Request $request, string $id_produk)
     {

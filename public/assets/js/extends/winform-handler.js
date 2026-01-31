@@ -16,7 +16,13 @@ $(document).on('submit', 'form[data-winform=true]', function (e) {
         data: form.serialize(),
 
         beforeSend: function () {
-            $.blockUI();
+            $.blockUI({
+                message: '',
+                css: {
+                    backgroundColor: 'transparent',
+                    border: 'none'
+                }
+            });
         },
         success: function (res) {
             if (res.success) {

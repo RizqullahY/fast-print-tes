@@ -14,7 +14,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 
-    <title>FASTPRINT - TEST</title>
+    <title>Dashboard</title>
 
     <meta name="description" content=""/>
 
@@ -70,7 +70,7 @@
     @yield('extend-css')
 </head>
 
-<body>
+<body class="overflow-auto hide-scrollbar">
 @yield('extend-components')
 <!-- Layout wrapper -->
 <div class="layout-wrapper layout-content-navbar">
