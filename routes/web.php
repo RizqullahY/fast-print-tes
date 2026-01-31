@@ -10,3 +10,9 @@ Route::get('/', function () {
 
 Route::get('/product/list', [ProductController::class, 'list'])->name('product.list');
 Route::resource('product', ProductController::class);
+
+Route::get('/category', function () {
+    return view('pages.category.index');
+});Route::get('/status', function () {
+    return view('pages.status.index');
+});
