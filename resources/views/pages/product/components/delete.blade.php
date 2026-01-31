@@ -22,7 +22,7 @@
             <select class="form-select form-select-sm" disabled
                     name="kategori_id"
                     required>
-                <option value="">-- Pilih Kategori --</option>
+                <option value="">Pilih Kategori</option>
                 @foreach ($kategori as $row)
                     <option value="{{ $row->id_kategori }}"
                         {{ $row->id_kategori == $produk->kategori_id ? 'selected' : '' }}>
@@ -50,8 +50,8 @@
             <label class="form-label">Harga</label>
             <div class="input-group input-group-sm input-group-merge">
                 <span class="input-group-text"><i class="ti ti-tags"></i></span>
-                <input type="number" disabled
-                       class="form-control"
+                <input type="text" disabled 
+                       class="form-control rupiah"
                        name="harga"
                        value="{{ old('harga', $produk->harga) }}"
                        min="0"

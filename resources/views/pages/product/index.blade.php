@@ -47,10 +47,11 @@
 @endsection
 
 @section('scripts')
+
     <!-- SWAL -->
     <script src="{{ asset('assets/js/helpers/swal.js') }}"></script>
 
-    <!-- SWAL -->
+    <!-- BLOCKUI -->
     <script src="{{ asset('assets/js/helpers/blockui.js') }}"></script>
     
     <!-- Winform -->
@@ -65,28 +66,27 @@
     <!-- Flatpickr -->
     <script src="{{ asset('assets/vendor/libs/flatpickr/flatpickr.js') }}"></script>
     
-    
+    <!-- Currency -->
+    <script src="{{ asset('assets/js/helpers/currency.js') }}"></script>
 
     <script>
         const createUrl = "{{ route('product.create') }}";
-        const editUrl = "{{ url('/product') }}/:id/edit";
+        const editUrl   = "{{ url('/product') }}/:id/edit";
         const deleteUrl = "{{ url('/product') }}/:id/";
-        
+
         $("#create-data").click(() => {
             winform(createUrl, 'GET', 'Create Produk');
         });
 
         function editProduk(id) {
-            let url = editUrl.replace(':id', id);
-            winform(url, 'GET', 'Edit Produk');
+            winform(editUrl.replace(':id', id), 'GET', 'Edit Produk');
         }
 
         function deleteProduk(id) {
-            let url = deleteUrl.replace(':id', id);
-            winform(url, 'GET', 'YAKIN INGIN HAPUS ?', 'text-danger');
+            winform(deleteUrl.replace(':id', id), 'GET', 'YAKIN INGIN HAPUS ?', 'text-danger');
         }
 
-        $('.dt-multilingual').DataTable({
+        window.productTable = $('.dt-multilingual').DataTable({
             processing: true,
             serverSide: true,
             ajax: "{{ route('product.list') }}",

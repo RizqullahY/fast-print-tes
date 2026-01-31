@@ -4,7 +4,6 @@
 
     <div class="row">
 
-        {{-- Nama Produk --}}
         <div class="mb-3 col-12 col-lg-6">
             <label class="form-label">Nama Produk</label>
             <div class="input-group input-group-sm input-group-merge">
@@ -18,13 +17,12 @@
             </div>
         </div>
 
-        {{-- Kategori --}}
         <div class="mb-3 col-12 col-lg-6">
             <label class="form-label">Kategori</label>
             <select class="form-select form-select-sm"
                     name="kategori_id"
                     required>
-                <option value="">-- Pilih Kategori --</option>
+                <option value="">Pilih Kategori</option>
                 @foreach ($kategori as $row)
                     <option value="{{ $row->id_kategori }}"
                         {{ $row->id_kategori == $produk->kategori_id ? 'selected' : '' }}>
@@ -34,7 +32,6 @@
             </select>
         </div>
 
-        {{-- Status --}}
         <div class="mb-3 col-12 col-lg-6">
             <label class="form-label">Status</label>
             <select class="form-select form-select-sm"
@@ -49,17 +46,19 @@
             </select>
         </div>
 
-        {{-- Harga --}}
         <div class="mb-3 col-12 col-lg-6">
             <label class="form-label">Harga</label>
-            <div class="input-group input-group-sm input-group-merge">
-                <span class="input-group-text"><i class="ti ti-tags"></i></span>
-                <input type="number"
-                       class="form-control"
+
+            <div class="input-group input-group-sm">
+                <span class="input-group-text">Rp</span>
+
+                <input type="text"
+                       class="form-control rupiah"
+                       value="{{ number_format(old('harga', $produk->harga),0,',','.') }}">
+
+                <input type="hidden"
                        name="harga"
-                       value="{{ old('harga', $produk->harga) }}"
-                       min="0"
-                       required>
+                       value="{{ old('harga', $produk->harga) }}">
             </div>
         </div>
 

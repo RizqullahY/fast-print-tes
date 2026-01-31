@@ -22,7 +22,7 @@
             <select class="form-select form-select-sm"
                     name="kategori_id"
                     required>
-                <option value="">-- Pilih Kategori --</option>
+                <option value="">Pilih Kategori</option>
                 @foreach ($kategori as $row)
                     <option value="{{ $row->id_kategori }}">
                         {{ $row->nama_kategori }}
@@ -48,13 +48,15 @@
         {{-- Harga --}}
         <div class="mb-3 col-12 col-lg-6">
             <label class="form-label">Harga</label>
-            <div class="input-group input-group-sm input-group-merge">
-                <span class="input-group-text"><i class="ti ti-tags"></i></span>
-                <input type="number"
-                       class="form-control"
-                       name="harga"
-                       min="0"
-                       required>
+
+            <div class="input-group input-group-sm">
+                <span class="input-group-text">Rp</span>
+
+                <input type="text"
+                    class="form-control rupiah">
+
+                <input type="hidden"
+                    name="harga">
             </div>
         </div>
 
