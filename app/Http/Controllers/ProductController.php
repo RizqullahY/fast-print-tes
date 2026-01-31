@@ -8,6 +8,7 @@ use App\Models\Status;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use App\Helpers\Currency;
 
 class ProductController extends Controller
 {
@@ -130,6 +131,9 @@ class ProductController extends Controller
         return DataTables::of($query)
             ->addColumn('kategori', function ($row) {
                 return $row->category->nama_kategori ?? '-';
+            })
+            ->addColumn('harga', function ($row) {
+                return Currency::rupiah($row->harga);
             })
             ->addColumn('action', function ($row) {
                 return '
