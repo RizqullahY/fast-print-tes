@@ -74,7 +74,6 @@
         
         $("#create-data").click(() => {
             winform(createUrl, 'GET', 'Create Produk');
-            $.blockUI();
         });
 
         function editProduk(id) {
