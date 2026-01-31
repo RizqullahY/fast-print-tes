@@ -1,4 +1,3 @@
-// Winform AJAX Submit Handler
 $(document).on('submit', 'form[data-winform=true]', function (e) {
     e.preventDefault();
 
@@ -6,13 +5,15 @@ $(document).on('submit', 'form[data-winform=true]', function (e) {
     let btn  = form.find('button[type=submit]');
 
     btn.prop('disabled', true);
-
     $.ajax({
         url: form.attr('action'),
         type: form.find('input[name=_method]').val() || form.attr('method'),
         data: form.serialize(),
+
         success: function (res) {
             if (res.success) {
+                swalSuccess(res.message || 'Berhasil');
+
                 $('#winform').modal('hide');
 
                 if ($.fn.DataTable.isDataTable('.dt-multilingual')) {
@@ -22,9 +23,14 @@ $(document).on('submit', 'form[data-winform=true]', function (e) {
                 }
             }
         },
+
         error: function (xhr) {
-            alert('Gagal menyimpan data');
+            if (xhr.status === 422 && xhr.responseJSON?.errors) {
+                swalError(xhr.responseJSON);
+                return;
+            }
         },
+
         complete: function () {
             btn.prop('disabled', false);
         }
