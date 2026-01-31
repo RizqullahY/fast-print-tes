@@ -32,7 +32,7 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_produk' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategori,id_kategori',
-            'harga'       => 'required|numeric|min:0',
+            'harga'       => 'required|digits_between:1,15'
         ]);
 
         if ($validator->fails()) {
@@ -110,7 +110,7 @@ class ProductController extends Controller
             : view('pages.product.delete', compact('produk', 'kategori', 'status'));
     }
 
-    public function destroy(Produk $id_produk)
+    public function destroy(string $id_produk)
     {
         Produk::destroy($id_produk);
 
@@ -137,8 +137,8 @@ class ProductController extends Controller
             })
             ->addColumn('action', function ($row) {
                 return '
-                    <button class="btn btn-sm btn-primary" onclick="editProduk('.$row->id_produk.')"> Edit </button>
-                    <button class="btn btn-sm btn-danger" onclick="deleteProduk('.$row->id_produk.')"> Delete </button>
+                    <button class="btn btn-sm btn-primary" onclick="editProduk('.$row->id_produk.')"><i class="ti ti-pencil"></i></button>
+                    <button class="btn btn-sm btn-danger" onclick="deleteProduk('.$row->id_produk.')"><i class="ti ti-trash"></i> </button>
                 ';
             })
             ->rawColumns(['action'])

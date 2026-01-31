@@ -128,3 +128,9 @@
   margin-top: 1rem;
 }
 
+.swal-toast-front {
+    z-index: 99999 !important;
+}
+.swal2-container {
+    z-index: 999999 !important;
+}
