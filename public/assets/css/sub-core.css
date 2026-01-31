@@ -127,3 +127,32 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+/* ============================= */
+/* SWEETALERT TOAST SUPER SMALL */
+/* ============================= */
+
+.swal-toast-sm {
+    padding: 6px 10px !important;
+    min-height: unset !important;
+    font-size: 12px !important;
+}
+
+.swal-toast-sm .swal2-title {
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+}
+
+/* Icon dikecilin */
+/* .swal-toast-sm .swal2-icon {
+    width: 16px !important;
+    height: 16px !important;
+    margin: 0 6px 0 0 !important;
+} */
+
+/* Progress bar ikut tipis */
+.swal-toast-sm .swal2-timer-progress-bar {
+    height: 2px !important;
+}

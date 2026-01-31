@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\Status;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -27,29 +28,32 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nama_produk' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategori,id_kategori',
             'harga'       => 'required|numeric|min:0',
         ]);
 
-        DB::transaction(function () use ($request) {
-            Produk::create([
-                'id_produk'   => Produk::max('id_produk') + 1,
-                'nama_produk' => $request->nama_produk,
-                'harga'       => $request->harga,
-                'kategori_id' => $request->kategori_id,
-                'status_id'   => 1,
-            ]);
-        });
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors'  => $validator->errors()
+            ], 422);
+        }
+
+        Produk::create([
+            'id_produk'   => Produk::max('id_produk') + 1,
+            'nama_produk' => $request->nama_produk,
+            'harga'       => $request->harga,
+            'kategori_id' => $request->kategori_id,
+            'status_id'   => 1,
+        ]);
 
         return response()->json([
             'success' => true,
             'message' => 'Product berhasil ditambahkan'
         ]);
     }
-
-
 
     public function edit(Request $request, string $id_produk)
     {
@@ -65,29 +69,34 @@ class ProductController extends Controller
 
     public function update(Request $request, string $id_produk)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'nama_produk' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategori,id_kategori',
             'status_id'   => 'required|exists:status,id_status',
-            'harga'      => 'required|numeric|min:0',
+            'harga'       => 'required|numeric|min:0',
         ]);
 
-        DB::transaction(function() use ($request, $id_produk){
-            $produk = Produk::findOrFail($id_produk);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'errors'  => $validator->errors()
+            ], 422);
+        }
 
-            $produk->update([
-                'nama_produk' => $request->nama_produk,
-                'kategori_id' => $request->kategori_id,
-                'status_id'   => $request->status_id,
-                'harga'       => $request->harga,
-            ]);
-        });
+        $produk = Produk::findOrFail($id_produk);
+        $produk->update($request->only([
+            'nama_produk',
+            'kategori_id',
+            'status_id',
+            'harga'
+        ]));
 
         return response()->json([
             'success' => true,
-            'message' => 'Product berhasil ditambahkan'
+            'message' => 'Product berhasil diupdate'
         ]);
     }
+
 
     public function show(Request $request, string $id_produk)
     {
@@ -106,7 +115,7 @@ class ProductController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Product berhasil ditambahkan'
+            'message' => 'Product berhasil Dihapus'
         ]);
     }
 
