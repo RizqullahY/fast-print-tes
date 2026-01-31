@@ -100,9 +100,14 @@ class ProductController extends Controller
             : view('pages.product.delete', compact('produk', 'kategori', 'status'));
     }
 
-    public function destroy(string $id)
+    public function destroy(Produk $id_produk)
     {
-        //
+        Produk::destroy($id_produk);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Product berhasil ditambahkan'
+        ]);
     }
 
 

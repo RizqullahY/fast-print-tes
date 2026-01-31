@@ -75,7 +75,7 @@
 
         function deleteProduk(id) {
             let url = deleteUrl.replace(':id', id);
-            winform(url, 'GET', 'Hapus Produk', 'text-danger');
+            winform(url, 'GET', 'YAKIN INGIN HAPUS ?', 'text-danger');
         }
 
 

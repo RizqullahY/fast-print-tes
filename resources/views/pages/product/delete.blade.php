@@ -7,7 +7,7 @@
                 <h5 class="mb-0">Delete Data</h5>
             </div>
             <div class="card-body">
-                @include('pages.product.components.edit')
+                @include('pages.product.components.delete')
             </div>
         </div>
     </div>
