@@ -1,12 +1,13 @@
 $(document).on('submit', 'form[data-winform=true]', function (e) {
+
     e.preventDefault();
 
     let form = $(this);
     let btn  = form.find('button[type=submit]');
+    
+    if (form.data('loading')) return;
 
-    if (form.data('loading')) return; 
     form.data('loading', true);
-
     btn.prop('disabled', true);
 
     $.ajax({
@@ -15,28 +16,26 @@ $(document).on('submit', 'form[data-winform=true]', function (e) {
         data: form.serialize(),
 
         beforeSend: function () {
-            $.blockUI(); 
+            $.blockUI();
         },
-
         success: function (res) {
             if (res.success) {
                 swalSuccess(res.message || 'Berhasil');
                 $('#winform').modal('hide');
-
-                if ($.fn.DataTable.isDataTable('.dt-multilingual')) {
-                    $('.dt-multilingual').DataTable().ajax.reload(null, false);
+                if (window.productTable) {
+                    window.productTable.ajax.reload(null, false);
                 }
             }
         },
-
         error: function (xhr) {
+
             if (xhr.status === 422 && xhr.responseJSON?.errors) {
                 swalError(xhr.responseJSON);
             }
         },
-
         complete: function () {
-            $.unblockUI(); 
+
+            $.unblockUI();
             btn.prop('disabled', false);
             form.data('loading', false);
         }

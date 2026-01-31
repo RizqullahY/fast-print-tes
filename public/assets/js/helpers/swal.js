@@ -1,27 +1,21 @@
-const Toast = Swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-    customClass: {
-        popup: 'swal-toast-sm',
-        title: 'swal-toast-title-sm'
-    },
-    didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer;
-        toast.onmouseleave = Swal.resumeTimer;
-    }
-});
-
 function swalSuccess(message) {
-    Toast.fire({
-        icon: 'success',
-        title: message || 'Berhasil'
+    Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: message,
+        showConfirmButton: false,
+        timer: 1500,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
     });
 }
 
 function swalError(message) {
+
     let text = 'Terjadi kesalahan';
 
     if (typeof message === 'object' && message.errors) {
@@ -31,8 +25,17 @@ function swalError(message) {
         text = message;
     }
 
-    Toast.fire({
-        icon: 'error',
-        title: text
+    Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "error",
+        title: text,
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
     });
 }
